@@ -1,18 +1,19 @@
 @include('components/_head.html')
 
-  @include('components/_header.html')
-
-  <main class="main">
-    <h1 class="sr-only">
-      
-    </h1>
+@include('components/_header.html')
 
 
-  </main>
+<main class="main">
+  <h1 class="title">
+    Todo List
+  </h1>
+  @include('components/_todolist.html')
 
-  @include('components/_footer.html')
+</main>
 
-  <script src="js/main.min.js"></script>
+@include('components/_footer.html')
+
+<script src="js/main.min.js"></script>
 </body>
 
 </html>
