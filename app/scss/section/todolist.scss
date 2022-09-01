@@ -1,0 +1,230 @@
+.todolist {
+
+  // .todolist__box-wrapper
+  &__box-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 700px;
+    width: 100%;
+    min-height: 300px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: rgb(255, 250, 240);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 45%);
+    border-radius: 5px;
+    z-index: 999;
+  }
+
+  // .todolist__box
+  &__box {}
+
+  // .todolist__form
+  &__form {
+    position: relative;
+  }
+
+  // .todolist__input
+  &__input {
+
+    width: 100%;
+    padding: 10px 15px 10px 60px;
+    border-bottom: 1px solid rgb(192, 189, 189);
+
+    &::placeholder {
+      font-weight: 200;
+    }
+  }
+
+  // .todolist__button
+  &__button {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    width: 23px;
+    height: 14px;
+    mask: url('../images/sprites/sprite.svg#down-arrow') center / cover no-repeat;
+    background-color: rgb(100, 99, 99);
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: rgb(17, 17, 17);
+    }
+  }
+
+  // .todolist__footer
+  &__footer {}
+
+  &__box-out {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 20px;
+    background-color: rgb(255, 250, 240);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 45%);
+  }
+}
+
+.box-one {
+  top: -10px;
+  max-width: 680px;
+  z-index: 2;
+}
+
+.box-two {
+  max-width: 670px;
+  top: -20px;
+  z-index: 1;
+}
+
+.list {
+
+  // .list__item
+  &__item {
+    position: relative;
+    padding: 10px 15px 10px 60px;
+    font-weight: 300;
+    border-bottom: 1px solid rgb(192, 189, 189);
+
+    &:hover {
+      & .list {
+        &__basket {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // .list__basket
+  &__basket {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    mask: url('../images/sprites/sprite.svg#basket') center / cover no-repeat;
+    background-color: rgb(192, 189, 189);
+    cursor: pointer;
+    opacity: 0;
+    transition: background-color 0.3s, opacity 0.3s;
+
+    &:hover {
+      background-color: rgb(100, 99, 99);
+    }
+  }
+
+
+  // .list__checkbox
+  &__checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+
+    &:checked {
+      &+.list {
+        &__label {
+
+          &::before {
+            border-color: rgb(100, 99, 99);
+          }
+
+          &::after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  // .list__label
+  &__label {
+    position: relative;
+    text-decoration: line-through;
+    text-decoration-color: transparent;
+    transition: all 0.3s;
+    cursor: pointer;
+
+
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+    }
+
+    &::before {
+      top: -6px;
+      left: -43px;
+      width: 30px;
+      height: 30px;
+      border: 1px solid rgb(201, 196, 196);
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    &::after {
+      top: -8px;
+      left: -43px;
+      width: 30px;
+      height: 35px;
+      mask: url('../images/sprites/sprite.svg#checkmark') center / cover no-repeat;
+      background-color: green;
+      transition: all 0.3s;
+      opacity: 0;
+    }
+  }
+
+}
+
+.completed {
+  // text-decoration: line-through;
+  color: rgb(201, 196, 196);
+  text-decoration-color: rgb(201, 196, 196);
+}
+
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px 5px 15px;
+  color: rgb(100, 99, 99);
+
+  // .footer__num
+  &__num {}
+
+  // .footer__buttons
+  &__buttons {
+
+    & .footer {
+      &__button {
+        margin: 0 5px;
+        padding: 5px;
+      }
+    }
+  }
+
+  // .footer__button
+  &__button {
+    padding: 5px;
+    color: rgb(100, 99, 99);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: border-color 0.3s,
+      color 0.3s;
+
+    &:hover {
+      border: 1px solid rgb(190, 185, 185);
+      color: rgb(17, 17, 17);
+      // color: red;
+    }
+  }
+}
+
+.active {
+  border: 2px solid rgb(190, 185, 185);
+  color: black;
+}

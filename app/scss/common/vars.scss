@@ -71,11 +71,9 @@ $md4:576;
     font-style: normal;
   }
 }
-
 // Использование миксина 
 // Используем в файле, где подключаем шрифты (_fonts.scss)
 // Внимательно проверяем название файла в папке, это наш второй параметр - $url
-
 @include font-face(OpenSans, OpenSansRegular, 400);
 @include font-face(OpenSans, OpenSansBold, 700);
 

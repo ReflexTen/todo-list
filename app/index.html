@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/icons/favicon.ico">
+  <title>TO DO LIST</title>
+  <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body>
+
+<header class="header">
+  
+</header>
+
+
+<main class="main">
+  <h1 class="title">
+    Todo List
+  </h1>
+  <section class="todolist section">
+
+  <div class="container">
+
+    <div class="todolist__box-wrapper">
+
+      <div class="todolist__box">
+
+        <form class="todolist__form">
+          <button class="todolist__button" type="submit">
+            v
+          </button>
+          <label class="sr-only" for="mission">What needs to be done?</label>
+          <input class="todolist__input" id="mission" name="mission" type="text" placeholder="What needs to be done?"
+            required>
+        </form>
+
+        <ul class="todolist__list list">
+
+          <!-- <li class="list__item">
+
+            <input class="list__checkbox" type="checkbox" name="item-checkbox1" id="item-checkbox1">
+
+            <label class="list__label" for="item-checkbox1">Learn JavaScript</label>
+
+            <div class="list__basket">
+              <span class="sr-only">Cash</span>
+            </div>
+
+          </li>  -->
+
+        </ul>
+      </div>
+
+      <div class="todolist__footer footer">
+        <div class="footer__num"><span>0</span> items left</div>
+
+        <div class="footer__buttons">
+          <button id="all-task" class="footer__button" type="button">All</button>
+          <button id="active-task" class="footer__button" type="button">Active</button>
+          <button id="show-completed" class="footer__button" type="button">Completed</button>
+        </div>
+
+        <button id="delete-completed" class="footer__button" type="button">Clear completed</button>
+      </div>
+    </div>
+
+    <div class="todolist__box-out box-one"></div>
+    <div class="todolist__box-out box-two"></div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+
+</html>
