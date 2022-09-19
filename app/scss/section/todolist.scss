@@ -8,13 +8,16 @@
     justify-content: space-between;
     max-width: 700px;
     width: 100%;
-    min-height: 300px;
-    height: 100%;
+    min-height: 250px;
+    // height: 200px;
+
     margin: 0 auto;
     background-color: rgb(255, 250, 240);
     box-shadow: 0 2px 4px rgb(0 0 0 / 45%);
     border-radius: 5px;
     z-index: 999;
+
+    transition: height 0.5s;
   }
 
   // .todolist__box
@@ -31,30 +34,55 @@
     width: 100%;
     padding: 10px 15px 10px 60px;
     border-bottom: 1px solid rgb(192, 189, 189);
+    outline: transparent;
+
+    @include media-3 {
+      font-size: 14px;
+      padding: 10px 15px 10px 45px;
+    }
+
+    @include media-4 {
+      font-size: 12px;
+    }
 
     &::placeholder {
       font-weight: 200;
+
+      @include media-3 {
+        font-size: 14px;
+      }
+
+      @include media-4 {
+        font-size: 12px;
+      }
     }
+
   }
 
   // .todolist__button
   &__button {
     position: absolute;
-    top: 15px;
-    left: 20px;
-    width: 23px;
-    height: 14px;
+    top: -2px;
+    left: 5px;
+    width: 50px;
+    height: 50px;
     mask: url('../images/sprites/sprite.svg#down-arrow') center / cover no-repeat;
     background-color: rgb(100, 99, 99);
     transition: background-color 0.3s;
 
+    @include media-3 {
+      top: 7px;
+      left: 4px;
+      width: 40px;
+      height: 25px;
+    }
+
     &:hover {
       background-color: rgb(17, 17, 17);
     }
-  }
 
-  // .todolist__footer
-  &__footer {}
+
+  }
 
   &__box-out {
     position: relative;
@@ -95,6 +123,14 @@
           opacity: 1;
         }
       }
+    }
+
+    @include media-2 {
+      font-size: 14px;
+    }
+
+    @include media-3 {
+      font-size: 12px;
     }
   }
 
@@ -193,6 +229,14 @@
   padding: 5px 10px 5px 15px;
   color: rgb(100, 99, 99);
 
+  @include media-3 {
+    padding: 5px 5px 5px 10px;
+  }
+
+  @include media-4 {
+    font-size: 12px;
+  }
+
   // .footer__num
   &__num {}
 
@@ -203,28 +247,53 @@
       &__button {
         margin: 0 5px;
         padding: 5px;
+
+        @include media-3 {
+          margin: 0;
+        }
       }
     }
   }
 
   // .footer__button
   &__button {
+    // display: block;
     padding: 5px;
     color: rgb(100, 99, 99);
     border: 1px solid transparent;
     border-radius: 3px;
+    // background-color: rgb(236, 228, 211);
     transition: border-color 0.3s,
-      color 0.3s;
+      color 0.2s;
+
+    @include media-4 {
+      display: inline;
+    }
+
 
     &:hover {
       border: 1px solid rgb(190, 185, 185);
       color: rgb(17, 17, 17);
-      // color: red;
+    }
+
+    &:active {
+      color: rgb(161, 159, 159);
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
   }
 }
 
 .active {
-  border: 2px solid rgb(190, 185, 185);
+  border: 1px solid rgb(190, 185, 185);
   color: black;
+
+}
+
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }

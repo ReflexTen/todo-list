@@ -48,4 +48,14 @@ body {
   font-size: 96px;
   color: rgb(212, 152, 172);
   text-transform: uppercase;
+
+  @include media-2 {
+    font-size: 75px;
+  }
+  @include media-3 {
+    font-size: 65px;
+  }
+  @include media-3 {
+    font-size: 55px;
+  }
 }
