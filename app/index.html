@@ -5,42 +5,40 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="images/favicon/favico.ico">
+  <link rel="shortcut icon" href="images/icons/favicon.ico">
   <title>TO DO LIST</title>
   <link rel="stylesheet" href="css/style.min.css">
 </head>
 
 <body>
 
-<header class="header">
-  
-</header>
+  <header class="header">
+
+  </header>
 
 
-<main class="main">
-  <h1 class="title">
-    Todo List
-  </h1>
-  <section class="todolist section">
+  <main class="main">
+    <h1 class="title">
+      Todo List
+    </h1>
+    <section class="todolist section">
 
-  <div class="container">
+      <div class="container">
 
-    <div class="todolist__box-wrapper">
+        <div class="todolist__box-wrapper">
 
-      <div class="todolist__box">
+          <div class="todolist__box">
 
-        <form class="todolist__form">
-          <button class="todolist__button" type="submit">
-            v
-          </button>
-          <label class="sr-only" for="mission">What needs to be done?</label>
-          <input class="todolist__input" id="mission" name="mission" type="text" placeholder="What needs to be done?"
-            required>
-        </form>
+            <form class="todolist__form">
+              <button class="todolist__button" type="submit"></button>
+              <label class="sr-only" for="mission">What needs to be done?</label>
+              <input class="todolist__input" id="mission" name="mission" type="text"
+                placeholder="What needs to be done?" required>
+            </form>
 
-        <ul class="todolist__list list">
+            <ul class="todolist__list list">
 
-          <!-- <li class="list__item">
+              <!-- <li class="list__item">
 
             <input class="list__checkbox" type="checkbox" name="item-checkbox1" id="item-checkbox1">
 
@@ -52,37 +50,37 @@
 
           </li>  -->
 
-        </ul>
-      </div>
+            </ul>
+          </div>
 
-      <div class="todolist__footer footer">
-        <div class="footer__num"><span>0</span> items left</div>
+          <div class="todolist__footer footer">
+            <div class="footer__num"><span>0</span> items left</div>
 
-        <div class="footer__buttons">
-          <button id="show-all" class="footer__button" type="button">All</button>
+            <div class="footer__buttons">
+              <button id="show-all" class="footer__button" type="button">All</button>
 
-          <button id="show-active" class="footer__button" type="button">Active</button>
+              <button id="show-active" class="footer__button" type="button">Active</button>
 
-          <button id="show-completed" class="footer__button" type="button">Completed</button>
+              <button id="show-completed" class="footer__button" type="button">Completed</button>
+            </div>
+
+            <button id="delete-completed" class="footer__button" type="button">Clear completed</button>
+          </div>
         </div>
 
-        <button id="delete-completed" class="footer__button" type="button">Clear completed</button>
+        <div class="todolist__box-out box-one"></div>
+        <div class="todolist__box-out box-two"></div>
+
       </div>
-    </div>
+    </section>
 
-    <div class="todolist__box-out box-one"></div>
-    <div class="todolist__box-out box-two"></div>
+  </main>
 
-  </div>
-</section>
+  <footer class="footer">
 
-</main>
+  </footer>
 
-<footer class="footer">
-  
-</footer>
-
-<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

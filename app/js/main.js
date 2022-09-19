@@ -1,7 +1,9 @@
 'use strict';
 
 const addForm = document.querySelector('.todolist__form'),
-  // boxWrapper = document.querySelector('.todolist__box-wrapper'),
+  boxWrapper = document.querySelector('.todolist__box-wrapper'),
+  boxOne = document.querySelector('.box-one'),
+  boxTwo = document.querySelector('.box-two'),
   // todoButton = document.querySelector('.todolist__button'),
   addInput = document.querySelector('.todolist__input'),
   sumItem = document.querySelector('.footer__num span'),
@@ -14,6 +16,26 @@ const addForm = document.querySelector('.todolist__form'),
 let counter = 0,
   numTask = 0;
 
+// let x = getComputedStyle(boxWrapper).height;
+// console.log(x);
+
+
+
+function boxWidth() {
+  let widthBox = Number(getComputedStyle(boxWrapper).width.slice(0, -2));
+
+  if (widthBox < 700) {
+    boxOne.style.width = `${widthBox - 20}px`;
+    boxTwo.style.width = `${widthBox - 30}px`;
+  } else {
+    boxOne.style.width = '680px';
+    boxTwo.style.width = '670px';
+  }
+}
+
+boxWidth();
+
+window.addEventListener('resize', boxWidth);
 
 addForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -64,6 +86,9 @@ function newToDo(newTask) {
     checked: false
   }
   localStorage.setItem(`task-${numTask}`, JSON.stringify(i));
+
+
+
 }
 
 
@@ -150,7 +175,7 @@ function addTaskFromLocalStorage() {
   let counter = 0;
   for (let i = 0; i < localStorage.length; i++) {
     let keyNumber = Number(localStorage.key(i).slice(5));
-    if (counter < keyNumber) {
+    if (keyNumber > counter) {
       counter = keyNumber;
     }
   }
