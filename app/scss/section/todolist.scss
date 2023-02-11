@@ -1,5 +1,4 @@
 .todolist {
-
   // .todolist__box-wrapper
   &__box-wrapper {
     position: relative;
@@ -21,7 +20,8 @@
   }
 
   // .todolist__box
-  &__box {}
+  &__box {
+  }
 
   // .todolist__form
   &__form {
@@ -30,7 +30,6 @@
 
   // .todolist__input
   &__input {
-
     width: 100%;
     padding: 10px 15px 10px 60px;
     border-bottom: 1px solid rgb(192, 189, 189);
@@ -53,10 +52,9 @@
       }
 
       @include media-4 {
-        font-size: 12px;
+        font-size: 10px;
       }
     }
-
   }
 
   // .todolist__button
@@ -66,7 +64,8 @@
     left: 5px;
     width: 50px;
     height: 50px;
-    mask: url('../images/sprites/sprite.svg#down-arrow') center / cover no-repeat;
+    mask: url('../images/sprites/sprite.svg#down-arrow') center / cover
+      no-repeat;
     background-color: rgb(100, 99, 99);
     transition: background-color 0.3s;
 
@@ -80,8 +79,6 @@
     &:hover {
       background-color: rgb(17, 17, 17);
     }
-
-
   }
 
   &__box-out {
@@ -109,11 +106,10 @@
 }
 
 .list {
-
   // .list__item
   &__item {
     position: relative;
-    padding: 10px 15px 10px 60px;
+    padding: 10px 40px 10px 60px;
     font-weight: 300;
     border-bottom: 1px solid rgb(192, 189, 189);
 
@@ -131,6 +127,11 @@
 
     @include media-3 {
       font-size: 12px;
+      padding: 10px 35px 10px 45px;
+    }
+
+    @include media-4 {
+      font-size: 10px;
     }
   }
 
@@ -150,8 +151,14 @@
     &:hover {
       background-color: rgb(100, 99, 99);
     }
-  }
 
+    @include media-3 {
+      opacity: 1;
+      right: 5px;
+      width: 20px;
+      height: 24px;
+    }
+  }
 
   // .list__checkbox
   &__checkbox {
@@ -160,9 +167,8 @@
     opacity: 0;
 
     &:checked {
-      &+.list {
+      & + .list {
         &__label {
-
           &::before {
             border-color: rgb(100, 99, 99);
           }
@@ -183,7 +189,7 @@
     transition: all 0.3s;
     cursor: pointer;
 
-
+    word-break: break-all;
     &::after,
     &::before {
       content: '';
@@ -199,6 +205,12 @@
       border: 1px solid rgb(201, 196, 196);
       border-radius: 50%;
       transition: all 0.3s;
+
+      @include media-3 {
+        left: -34px;
+        width: 25px;
+        height: 25px;
+      }
     }
 
     &::after {
@@ -206,13 +218,19 @@
       left: -43px;
       width: 30px;
       height: 35px;
-      mask: url('../images/sprites/sprite.svg#checkmark') center / cover no-repeat;
+      mask: url('../images/sprites/sprite.svg#checkmark') center / cover
+        no-repeat;
       background-color: green;
       transition: all 0.3s;
       opacity: 0;
+
+      @include media-3 {
+        left: -34px;
+        width: 25px;
+        height: 30px;
+      }
     }
   }
-
 }
 
 .completed {
@@ -220,7 +238,6 @@
   color: rgb(201, 196, 196);
   text-decoration-color: rgb(201, 196, 196);
 }
-
 
 .footer {
   display: flex;
@@ -230,19 +247,16 @@
   color: rgb(100, 99, 99);
 
   @include media-3 {
+    font-size: 14px;
     padding: 5px 5px 5px 10px;
   }
 
   @include media-4 {
-    font-size: 12px;
+    font-size: 9px;
   }
-
-  // .footer__num
-  &__num {}
 
   // .footer__buttons
   &__buttons {
-
     & .footer {
       &__button {
         margin: 0 5px;
@@ -263,13 +277,11 @@
     border: 1px solid transparent;
     border-radius: 3px;
     // background-color: rgb(236, 228, 211);
-    transition: border-color 0.3s,
-      color 0.2s;
+    transition: border-color 0.3s, color 0.2s;
 
     @include media-4 {
       display: inline;
     }
-
 
     &:hover {
       border: 1px solid rgb(190, 185, 185);
@@ -286,9 +298,7 @@
 .active {
   border: 1px solid rgb(190, 185, 185);
   color: black;
-
 }
-
 
 .hide {
   display: none;
