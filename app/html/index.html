@@ -1,19 +1,16 @@
-@include('components/_head.html')
+<!DOCTYPE html>
+<html lang="en">
+  @include('components/_head.html')
+  <body>
+    @include('components/_header.html')
 
-@include('components/_header.html')
+    <main class="main">
+      <h1 class="title">Todo List</h1>
+      @include('components/_todolist.html')
+    </main>
 
+    @include('components/_footer.html')
 
-<main class="main">
-  <h1 class="title">
-    Todo List
-  </h1>
-  @include('components/_todolist.html')
-
-</main>
-
-@include('components/_footer.html')
-
-<script src="js/main.js"></script>
-</body>
-
+    <script src="js/main.min.js"></script>
+  </body>
 </html>
