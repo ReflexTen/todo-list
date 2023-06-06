@@ -58,6 +58,11 @@ function scripts() {
     // 'node_modules/jquery/dist/jquery.js',
 
     'app/js/main.js',
+    // 'app/js/appWeather.js',
+    // 'app/js/appOpenWeather.js',
+    // 'app/js/choiceUnits.js',
+    // 'app/js/geolocation.js',
+    // 'app/js/windDirection.js',
   ])
     .pipe(concat('main.min.js'))
     .pipe(uglify())
@@ -121,10 +126,11 @@ function build() {
   return src(
     [
       'app/**/*.html',
-      'app/favicons/**',
+      'app/favicons/*',
       '!app/html/**/*.html',
       'app/css/style.min.css',
-      'app/js/main.min.js',
+      'app/js/*.js',
+      // 'app/js/main.min.js',
       'app/fonts/*.woff',
       'app/fonts/*.woff2',
     ],
