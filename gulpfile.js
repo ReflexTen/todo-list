@@ -1,55 +1,64 @@
-const { src,dest,watch,parallel,series} = require('gulp');
-const scss         = require('gulp-sass')(require('sass'));
-const fileInclude  = require('gulp-file-include');
-const concat       = require('gulp-concat');
-const autoprefixer = require('gulp-autoprefixer');
-const uglify       = require('gulp-uglify');
-const imagemin     = require('gulp-imagemin');
-const del          = require('del');
-const svgSprite    = require('gulp-svg-sprite');
-const cheerio      = require('gulp-cheerio');
-const replace      = require('gulp-replace');
-const browserSync  = require('browser-sync').create();
+const { src, dest, watch, parallel, series } = require('gulp')
+const scss = require('gulp-sass')(require('sass'))
+const fileInclude = require('gulp-file-include')
+const concat = require('gulp-concat')
+const autoprefixer = require('gulp-autoprefixer')
+const uglify = require('gulp-uglify')
+const imagemin = require('gulp-imagemin')
+const del = require('del')
+const svgSprite = require('gulp-svg-sprite')
+const cheerio = require('gulp-cheerio')
+const replace = require('gulp-replace')
+const browserSync = require('browser-sync').create()
+
+const gulp = require('gulp')
+const ghPages = require('gulp-gh-pages')
+
+gulp.task('deploy', function () {
+  return gulp.src('./dist/**/*').pipe(ghPages())
+})
 
 function browsersync() {
   browserSync.init({
     server: {
-      baseDir: 'app/'
+      baseDir: 'app/',
     },
-    notify: false
+    notify: false,
   })
 }
 
 const htmlInclude = () => {
   return src(['app/html/*.html'])
-    .pipe(fileInclude({
-      prefix: '@',
-      basepath: '@file',
-    }))
+    .pipe(
+      fileInclude({
+        prefix: '@',
+        basepath: '@file',
+      })
+    )
     .pipe(dest('app')) // указываем, в какую папку поместить готовый файл html
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream())
 }
 
 function styles() {
   return src('app/scss/style.scss')
-    .pipe(scss({outputStyle: 'compressed'}))
+    .pipe(scss({ outputStyle: 'compressed' }))
     .pipe(concat('style.min.css'))
-    .pipe(autoprefixer({
-      overrideBrowserslist: ['last 10 version'],
-      grid: true
-    }))
+    .pipe(
+      autoprefixer({
+        overrideBrowserslist: ['last 10 version'],
+        grid: true,
+      })
+    )
     .pipe(dest('app/css'))
     .pipe(browserSync.stream())
 }
 
 function scripts() {
   return src([
-      // 'node_modules/jquery/dist/jquery.js',
-      
+    // 'node_modules/jquery/dist/jquery.js',
 
-      
-      'app/js/main.js'
-    ])
+    'app/js/main.js',
+  ])
     .pipe(concat('main.min.js'))
     .pipe(uglify())
     .pipe(dest('app/js'))
@@ -58,38 +67,43 @@ function scripts() {
 
 function images() {
   return src('app/images/**/*.*')
-    .pipe(imagemin([
-      imagemin.gifsicle({interlaced: true}),
-      imagemin.mozjpeg({
-        quality: 75,
-        progressive: true
-      }),
-      imagemin.optipng({optimizationLevel: 5}),
-      imagemin.svgo({
-        plugins: [{
-            removeViewBox: true
-          },
-          {
-            cleanupIDs: false
-          }
-        ]
-      })
-    ]))
+    .pipe(
+      imagemin([
+        imagemin.gifsicle({ interlaced: true }),
+        imagemin.mozjpeg({
+          quality: 75,
+          progressive: true,
+        }),
+        imagemin.optipng({ optimizationLevel: 5 }),
+        imagemin.svgo({
+          plugins: [
+            {
+              removeViewBox: true,
+            },
+            {
+              cleanupIDs: false,
+            },
+          ],
+        }),
+      ])
+    )
     .pipe(dest('dist/images'))
 }
 
 function svgSprites() {
   return src('app/images/icons/*.svg')
-    .pipe(cheerio({
-      run: ($) => {
-        $("[fill]").removeAttr("fill");
-        $("[stroke]").removeAttr("stroke");
-        $("[style]").removeAttr("style");
-      },
-      parserOptions: {
-        xmlMode: true
-      },
-    }))
+    .pipe(
+      cheerio({
+        run: $ => {
+          $('[fill]').removeAttr('fill')
+          $('[stroke]').removeAttr('stroke')
+          $('[style]').removeAttr('style')
+        },
+        parserOptions: {
+          xmlMode: true,
+        },
+      })
+    )
     .pipe(replace('&gt;', '>'))
     .pipe(
       svgSprite({
@@ -100,43 +114,53 @@ function svgSprites() {
         },
       })
     )
-    .pipe(dest('app/images/sprites'));
+    .pipe(dest('app/images/sprites'))
 }
 
 function build() {
-  return src([
+  return src(
+    [
       'app/**/*.html',
+      'app/favicons/**',
       '!app/html/**/*.html',
       'app/css/style.min.css',
       'app/js/main.min.js',
-      'app/fonts/*.woff', 'app/fonts/*.woff2',
-    ], {
-      base: 'app'
-    })
-    .pipe(dest('dist'))
+      'app/fonts/*.woff',
+      'app/fonts/*.woff2',
+    ],
+    {
+      base: 'app',
+    }
+  ).pipe(dest('dist'))
 }
 
 function cleanDist() {
   return del('dist')
 }
 
-
 function watching() {
- watch(['app/html/**/*.html'], htmlInclude);
- watch(['app/**/*.scss'], styles)
- watch(['app/js/**/*.js', '!app/js/main.min.js'], scripts)
- watch(['app/**/*.html']).on('change', browserSync.reload)
- watch(['app/images/icons/*.svg'], svgSprites);
+  watch(['app/html/**/*.html'], htmlInclude)
+  watch(['app/**/*.scss'], styles)
+  watch(['app/js/**/*.js', '!app/js/main.min.js'], scripts)
+  watch(['app/**/*.html']).on('change', browserSync.reload)
+  watch(['app/images/icons/*.svg'], svgSprites)
 }
 
-exports.styles = styles;
-exports.htmlInclude = htmlInclude;
-exports.scripts = scripts;
-exports.browsersync = browsersync;
-exports.watching = watching;
-exports.images = images;
-exports.svgSprites = svgSprites;
-exports.cleanDist = cleanDist;
-exports.build = series(cleanDist, images, build);
+exports.styles = styles
+exports.htmlInclude = htmlInclude
+exports.scripts = scripts
+exports.browsersync = browsersync
+exports.watching = watching
+exports.images = images
+exports.svgSprites = svgSprites
+exports.cleanDist = cleanDist
+exports.build = series(cleanDist, images, build)
 
-exports.default = parallel(htmlInclude, svgSprites, styles, scripts, browsersync, watching);
+exports.default = parallel(
+  htmlInclude,
+  svgSprites,
+  styles,
+  scripts,
+  browsersync,
+  watching
+)
