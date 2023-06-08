@@ -11,13 +11,6 @@ const cheerio = require('gulp-cheerio')
 const replace = require('gulp-replace')
 const browserSync = require('browser-sync').create()
 
-const gulp = require('gulp')
-const ghPages = require('gulp-gh-pages')
-
-gulp.task('deploy', function () {
-  return gulp.src('./dist/**/*').pipe(ghPages())
-})
-
 function browsersync() {
   browserSync.init({
     server: {
